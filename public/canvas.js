@@ -16,6 +16,9 @@ let eraserWidth = eraserWidthElem.value;
 
 //represent which action from tracker arr
 let tool = canvas.getContext("2d")
+tool.strokeStyle = penColor;
+tool.lineWidth = penWidth;
+
 let mousedown=false
 let track = 0;
 let undoRedoTracker =[]
@@ -34,6 +37,8 @@ canvas.addEventListener("mousemove",(e)=>{
       let data = {
         x: e.clientX,
         y: e.clientY,
+        color: eraserFlag ? eraserColor : penColor,
+        width: eraserFlag ? eraserWidth : penWidth,
       };
       socket.emit("drawStroke",data)
     }
